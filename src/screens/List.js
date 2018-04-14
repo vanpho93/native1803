@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import bugIcon from '../images/bug.png';
 
 export class List extends Component {
     constructor(props) {
@@ -16,9 +17,16 @@ export class List extends Component {
         };
     }
     render() {
+        const { singers } = this.state;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>US-UK Singers</Text>
+                {singers.map(singer => (
+                    <View key={singer.name}>
+                        <Image source={{ uri: singer.image }} style={styles.avatar} />
+                        <Text>{singer.name}</Text>
+                    </View>
+                ))}
             </View>
         );
     }
@@ -35,5 +43,10 @@ const styles = StyleSheet.create({
         color: 'gray',
         fontWeight: 'bold',
         fontSize: 20
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 25
     }
 });
