@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { Button } from '../shared/Button';
 
 export class Init extends Component {
     render() {
@@ -9,9 +9,7 @@ export class Init extends Component {
                 <Text style={styles.title}>
                     Init Component
                 </Text>
-                <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>Show</Text>
-                </TouchableOpacity>
+                <Button title="Show" />
             </View>
         );
     }
@@ -28,17 +26,5 @@ const styles = StyleSheet.create({
         color: 'gray',
         fontWeight: 'bold',
         fontSize: 20
-    },
-    buttonContainer: {
-        backgroundColor: '#25C73A',
-        padding: 10,
-        borderRadius: 5,
-        borderColor: '#3EA552',
-        borderWidth: 1,
-        margin: 10
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold'
     }
 });
