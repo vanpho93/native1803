@@ -3,14 +3,12 @@ import { StyleSheet, TextInput } from 'react-native';
 
 export class Input extends Component {
     render() {
-        const { placeholder, onChangeText } = this.props;
         return (
             <TextInput
-                style={styles.textInput}
-                placeholder={placeholder}
+                {...this.props}
+                style={[styles.textInput, this.props.style]}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
-                onChangeText={onChangeText}
             />
         );
     }

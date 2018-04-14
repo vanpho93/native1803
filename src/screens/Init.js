@@ -20,10 +20,15 @@ export class Init extends Component {
                 />
                 <Input
                     placeholder="Password"
+                    secureTextEntry
                     onChangeText={text => this.setState({ txtPassword: text })}
                 />
-                <Text>Email: {this.state.txtEmail}</Text>
-                <Text>Password: {this.state.txtPassword}</Text>
+                <Button
+                    title="Login"
+                    type="success"
+                    style={{ width: 300 }}
+                    onPress={() => alert("Login successfully.")}
+                />
             </View>
         );
     }
