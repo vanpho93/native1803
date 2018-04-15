@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { Button } from '../shared/Button';
+
 import bugIcon from '../images/bug.png';
 
 export class List extends Component {
@@ -21,20 +23,32 @@ export class List extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>US-UK Singers</Text>
-                {singers.map(singer => (
-                    <View key={singer.name}>
-                        <Image source={{ uri: singer.image }} style={styles.avatar} />
-                        <Text>{singer.name}</Text>
-                    </View>
-                ))}
+                <FlatList
+                    data={singers}
+                    renderItem={({ item }) => (
+                        <View style={styles.singerContainer}>
+                            <Image source={{ uri: item.image }} style={styles.avatar} />
+                            <View style={styles.singerRight}>
+                                <Text style={styles.title}>{item.name}</Text>
+                                <View style={styles.singerControllers}>
+                                    <Button title="Show" type="success" />
+                                    <Button title="Delete" type="warning" />
+                                </View>
+                            </View>
+                        </View>
+                    )}
+                    keyExtractor={item => item._id}
+                />
             </View>
         );
     }
 }
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'lightblue',
+        backgroundColor: '#F5F5F5',
         flex: 1,
         alignItems: 'center',
         paddingTop: 20
@@ -45,8 +59,23 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     avatar: {
-        width: 50,
-        height: 50,
+        width: 100,
+        height: 100,
         borderRadius: 25
+    },
+    singerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: width - 20,
+        marginVertical: 10,
+        backgroundColor: '#CED1D9',
+        paddingVertical: 10,
+        borderRadius: 20
+    },
+    singerRight: {
+
+    },
+    singerControllers: {
+        flexDirection: 'row'
     }
 });
