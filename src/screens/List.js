@@ -22,7 +22,9 @@ export class List extends Component {
         const { singers } = this.state;
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>US-UK Singers</Text>
+                <View style={styles.header}>
+                    <Text style={styles.title}>US-UK Singers</Text>
+                </View>
                 <FlatList
                     data={singers}
                     renderItem={({ item }) => (
@@ -51,7 +53,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
         flex: 1,
         alignItems: 'center',
-        paddingTop: 20
     },
     title: {
         color: 'gray',
@@ -77,5 +78,11 @@ const styles = StyleSheet.create({
     },
     singerControllers: {
         flexDirection: 'row'
+    },
+    header: {
+        backgroundColor: '#D5D5D5',
+        padding: 10,
+        alignSelf: 'stretch',
+        alignItems: 'center'
     }
 });
