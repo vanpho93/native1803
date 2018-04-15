@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 const defaultState = {
     temp: '30',
     cityName: 'Sai Gon',
-    loading: false
+    loading: true
 };
 
 function reducer(state = defaultState, action) {
