@@ -1,15 +1,16 @@
 import axios from 'axios';
-// export function startGetWeather() {
-//     return { type: 'START_GET_WEATHER' };
-// }
 
-// export function gotError() {
-//     { type: 'GOT_ERROR' };
-// }
+function startGetWeather() {
+    return { type: 'START_GET_WEATHER' };
+}
 
-// export function gotWeather(cityName, temp) {
-//     return { type: 'GOT_WEATHER', cityName, temp };
-// }
+function gotError() {
+    { type: 'GOT_ERROR' };
+}
+
+function gotWeather(cityName, temp) {
+    return { type: 'GOT_WEATHER', cityName, temp };
+}
 
 export function getWeather(cityName) {
     return dispatch => {
