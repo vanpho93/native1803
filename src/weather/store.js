@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
 
 const defaultState = {
-    temp: '30',
-    cityName: 'Sai Gon',
-    loading: true
+    temp: null,
+    cityName: null,
+    loading: false
 };
 
 function reducer(state = defaultState, action) {

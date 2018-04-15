@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import axios from 'axios';
 import { Button } from '../shared/Button';
 import { Input } from '../shared/Input';
 
 export class WeatherForm extends Component {
-    state = { txtCityname: '' };
+    constructor(props) {
+        super(props);
+        this.state = { txtCityname: '' };
+        this.getTempByCityName = this.getTempByCityName.bind(this);
+    }
+
+    getTempByCityName() {
+        const URL = 'https://api.openweathermap.org/data/2.5/weather?appid=01cc37655736835b0b75f2b395737694&units=metric&q='
+        const { txtCityname } = this.state;
+        axios.get(URL + txtCityname)
+        .then(response => alert(response.data.main.temp))
+        .catch(error => alert(error))
+    }
+
     render() {
         return (
-            <View>
+            <View style={{ alignItems: 'center' }}>
                 <Input
                     placeholder="Enter your city name"
                     onChangeText={text => this.setState({ txtCityname: text })}
                 />
-                <Button title="Get Weather" type="success" />
+                <Button
+                    title="Get Weather"
+                    type="success"
+                    style={{ width: 150 }}
+                    onPress={this.getTempByCityName}
+                />
             </View>
         );
     }
