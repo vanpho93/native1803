@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Button } from '../shared/Button';
 import { Input } from '../shared/Input';
+import * as actionCreators from './actionCreators';
 
 class WeatherFormComponent extends Component {
     constructor(props) {
@@ -13,21 +14,17 @@ class WeatherFormComponent extends Component {
     }
 
     getTempByCityName() {
-        const { dispatch } = this.props;
-        dispatch({ type: 'START_GET_WEATHER' });
+        const { startGetWeather, gotError, gotWeather } = this.props;
+        startGetWeather();
         const URL = 'https://api.openweathermap.org/data/2.5/weather?appid=01cc37655736835b0b75f2b395737694&units=metric&q='
         const { txtCityname } = this.state;
         axios.get(URL + txtCityname)
         .then(response => {
-            dispatch({
-                type: 'GOT_WEATHER',
-                cityName: txtCityname,
-                temp: response.data.main.temp
-            });
+            gotWeather(txtCityname, response.data.main.temp);
             this.setState({ txtCityname: '' });
         })
         .catch(error => {
-            dispatch({ type: 'GOT_ERROR' });
+            gotError();
             this.setState({ txtCityname: '' });
             alert(error);
         })
@@ -52,4 +49,4 @@ class WeatherFormComponent extends Component {
     }
 }
 
-export const WeatherForm = connect()(WeatherFormComponent);
+export const WeatherForm = connect(null, actionCreators)(WeatherFormComponent);
