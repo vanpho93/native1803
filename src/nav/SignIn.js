@@ -4,12 +4,14 @@ import { Button } from '../shared/Button';
 
 export class SignIn extends Component {
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Sign In Component</Text>
                 <Button 
                     title="Login"
                     type="success"
+                    onPress={() => navigate('Account')}
                 />
             </View>
         );

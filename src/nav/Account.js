@@ -4,12 +4,14 @@ import { Button } from '../shared/Button';
 
 export class Account extends Component {
     render() {
+        const { goBack } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Account Component</Text>
                 <Button 
                     title="Log out"
                     type="warning"
+                    onPress={() => goBack()}
                 />
             </View>
         );
