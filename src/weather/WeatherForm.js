@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Button } from '../shared/Button';
 import { Input } from '../shared/Input';
 
-export class WeatherForm extends Component {
+class WeatherFormComponent extends Component {
     constructor(props) {
         super(props);
         this.state = { txtCityname: '' };
@@ -12,17 +13,31 @@ export class WeatherForm extends Component {
     }
 
     getTempByCityName() {
+        const { dispatch } = this.props;
+        dispatch({ type: 'START_GET_WEATHER' });
         const URL = 'https://api.openweathermap.org/data/2.5/weather?appid=01cc37655736835b0b75f2b395737694&units=metric&q='
         const { txtCityname } = this.state;
         axios.get(URL + txtCityname)
-        .then(response => alert(response.data.main.temp))
-        .catch(error => alert(error))
+        .then(response => {
+            dispatch({
+                type: 'GOT_WEATHER',
+                cityName: txtCityname,
+                temp: response.data.main.temp
+            });
+            this.setState({ txtCityname: '' });
+        })
+        .catch(error => {
+            dispatch({ type: 'GOT_ERROR' });
+            this.setState({ txtCityname: '' });
+            alert(error);
+        })
     }
 
     render() {
         return (
             <View style={{ alignItems: 'center' }}>
                 <Input
+                    value={this.state.txtCityname}
                     placeholder="Enter your city name"
                     onChangeText={text => this.setState({ txtCityname: text })}
                 />
@@ -37,3 +52,4 @@ export class WeatherForm extends Component {
     }
 }
 
+export const WeatherForm = connect()(WeatherFormComponent);
