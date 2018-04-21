@@ -4,6 +4,13 @@ import { DrawerNavigator } from 'react-navigation';
 import { Button } from '../shared/Button';
 
 class Account extends Component {
+    constructor(props) {
+        super(props);
+        this.sendRequest = this.sendRequest.bind(this);
+    }
+    sendRequest() {
+        alert(123);
+    }
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -13,6 +20,11 @@ class Account extends Component {
                     title="Log out"
                     type="warning"
                     onPress={() => navigate('DrawerOpen')}
+                />
+                <Button
+                    title="Send request"
+                    type="success"
+                    onPress={this.sendRequest}
                 />
             </View>
         );
