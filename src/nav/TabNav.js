@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text , Image} from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { Button } from '../shared/Button';
 
@@ -16,7 +16,7 @@ class Account extends Component {
         return (
             <View style={styles.accountContainer}>
                 <Text style={styles.title}>Account Component</Text>
-                <Button 
+                <Button
                     title="Log out"
                     type="warning"
                 />
@@ -30,7 +30,7 @@ class About extends Component {
         return (
             <View style={styles.aboutContainer}>
                 <Text style={styles.title}>Account Component</Text>
-                <Button 
+                <Button
                     title="Log out"
                     type="warning"
                 />
@@ -44,7 +44,7 @@ class SignIn extends Component {
         return (
             <View style={styles.signInContainer}>
                 <Text style={styles.title}>Sign In Component</Text>
-                <Button 
+                <Button
                     title="Login"
                     type="success"
                 />
@@ -53,11 +53,13 @@ class SignIn extends Component {
     }
 }
 
+const options =  { tabBarOptions: { showIcon: true }, tabBarPosition: 'bottom' };
+
 export const TabNav = TabNavigator({
     SignIn: {
         screen: SignIn,
         navigationOptions: {
-            title:'SignIn',
+            title: 'SignIn',
             tabBarIcon: ({ focused }) => {
                 const source = focused ? signInFocusIcon : signInIcon;
                 return <Image source={source} />
@@ -67,7 +69,7 @@ export const TabNav = TabNavigator({
     Account: {
         screen: Account,
         navigationOptions: {
-            title:'Account',
+            title: 'Account',
             tabBarIcon: ({ focused }) => {
                 const source = focused ? accountFocusIcon : accountIcon;
                 return <Image source={source} />
@@ -77,14 +79,15 @@ export const TabNav = TabNavigator({
     About: {
         screen: About,
         navigationOptions: {
-            title:'About',
+            title: 'About',
             tabBarIcon: ({ focused }) => {
                 const source = focused ? aboutFocusIcon : aboutIcon;
                 return <Image source={source} />
-            }
+            },
+            showIcon: true,
         }
     }
-});
+}, options);
 
 const styles = StyleSheet.create({
     aboutContainer: {
