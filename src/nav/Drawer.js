@@ -15,7 +15,7 @@ class Account extends Component {
         // .then(response => console.log(response))
         // .catch(error => console.log(error));
         const data = { email: 'tun@gmail.com', password: '123' };
-        axios.post('http://192.168.1.13:3000/signin', data)
+        axios.post('https://express1803.herokuapp.com/signin', data)
         // .then(response => alert(response.data.message))
         .then(response => console.log(response))
         .catch(error => console.log(error));
@@ -88,3 +88,4 @@ const styles = StyleSheet.create({
     }
 });
 
+// https://www.youtube.com/playlist?list=PL7D-0n1z1EbhkundIsOBaN_mlLvV4_hyO
