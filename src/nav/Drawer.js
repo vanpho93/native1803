@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
+import axios from 'axios';
 import { Button } from '../shared/Button';
 
 class Account extends Component {
@@ -8,9 +9,18 @@ class Account extends Component {
         super(props);
         this.sendRequest = this.sendRequest.bind(this);
     }
+
     sendRequest() {
-        alert(123);
+        // axios.get('http://192.168.1.13:3000/signin/teo@gmail.com/123')
+        // .then(response => console.log(response))
+        // .catch(error => console.log(error));
+        const data = { email: 'tun@gmail.com', password: '123' };
+        axios.post('http://192.168.1.13:3000/signin', data)
+        // .then(response => alert(response.data.message))
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
     }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
