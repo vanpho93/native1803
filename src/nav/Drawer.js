@@ -5,12 +5,14 @@ import { Button } from '../shared/Button';
 
 class Account extends Component {
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.accountContainer}>
                 <Text style={styles.title}>Account Component</Text>
                 <Button
                     title="Log out"
                     type="warning"
+                    onPress={() => navigate('DrawerOpen')}
                 />
             </View>
         );
@@ -19,12 +21,14 @@ class Account extends Component {
 
 class Menu extends Component {
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.signInContainer}>
                 <Text style={styles.title}>Menu Component</Text>
                 <Button
                     title="Login"
                     type="success"
+                    onPress={() => navigate('DrawerClose')}
                 />
             </View>
         );
