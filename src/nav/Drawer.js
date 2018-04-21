@@ -31,9 +31,10 @@ class Menu extends Component {
     }
 }
 
-export const Drawer = DrawerNavigator({
-    Account: { screen: Account }
-});
+export const Drawer = DrawerNavigator(
+    { Account: { screen: Account } },
+    { contentComponent: Menu }
+);
 
 const styles = StyleSheet.create({
     aboutContainer: {
