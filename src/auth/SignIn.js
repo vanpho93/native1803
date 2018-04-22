@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, AsyncStorage } from 'react-native';
 import { Button } from '../shared/Button';
 import { Input } from '../shared/Input';
 import axios from 'axios';
@@ -10,9 +10,24 @@ export class SignIn extends Component {
         this.state = { txtEmail: 'teo@gmail.com', txtPassword: '123' };
         this.login = this.login.bind(this);
     }
+
+    // componentDidMount() {
+    //     AsyncStorage.getItem('token')
+    //     .then(value => alert('token: ' + value));
+    // }
+
     login() {
-        alert(JSON.stringify(this.state));
+        const { txtEmail, txtPassword } = this.state;
+        const { navigate } = this.props.navigation;
+        const url = 'https://auth1803.herokuapp.com/signin';
+        axios.post(url, { email: txtEmail, password: txtPassword })
+        .then(response => {
+            AsyncStorage.setItem('token', response.data.user.token);
+            navigate('Account');
+        })
+        .catch(error => alert('Check User Login Infomation.'));
     }
+
     render() {
         const { txtEmail, txtPassword } = this.state;
         return (

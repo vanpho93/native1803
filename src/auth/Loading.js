@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator, AsyncStorage } from 'react-native';
+import axios from 'axios';
 import { Button } from '../shared/Button';
 
 export class Loading extends Component {
     componentDidMount() {
-        setTimeout(() => this.props.navigation.navigate('Account'), 1000);
+        const { navigate } = this.props.navigation;
+        AsyncStorage.getItem('token')
+        .then(token => {
+            if (!token) return navigate('Signin');
+            const url = 'https://auth1803.herokuapp.com/check'
+            axios.post(url, { token })
+            .then(() => navigate('Account'))
+            .catch(() => navigate('SignIn'))
+        });
     }
     render() {
         return (

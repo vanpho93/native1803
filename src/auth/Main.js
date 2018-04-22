@@ -4,7 +4,7 @@ import { Loading } from './Loading.js';
 import { SignIn } from './SignIn';
 
 export const Main = StackNavigator({
-    SignIn: { screen: SignIn },
     Loading: { screen: Loading },
+    SignIn: { screen: SignIn },
     Account: { screen: Account },
 }, { headerMode: 'none' });
