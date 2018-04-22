@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, AsyncStorage } from 'react-native';
 import { Button } from '../shared/Button';
 
 export class Account extends Component {
+    constructor(props) {
+        super(props);
+        this.logOut = this.logOut.bind(this);
+    }
+    logOut() {
+        AsyncStorage.removeItem('token');
+        this.props.navigation.navigate('SignIn');
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -10,6 +18,7 @@ export class Account extends Component {
                 <Button 
                     title="Log out"
                     type="warning"
+                    onPress={this.logOut}
                 />
             </View>
         );
